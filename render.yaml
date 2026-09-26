@@ -13,9 +13,13 @@ services:
       - key: DB_DRIVER
         value: org.postgresql.Driver
       - key: DB_USER
-        value: # Will be set by database connection
+        fromDatabase:
+          name: devshowcase-db
+          property: user
       - key: DB_PASSWORD
-        value: # Will be set by database connection
+        fromDatabase:
+          name: devshowcase-db
+          property: password
       - key: DB_DIALECT
         value: org.hibernate.dialect.PostgreSQLDialect
 
