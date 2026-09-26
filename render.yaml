@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: devshowcase-api
+    env: docker
+    plan: free
+    region: ohio
+    healthCheckPath: /api/projects
+    envVars:
+      - key: DB_URL
+        fromDatabase:
+          name: devshowcase-db
+          property: connectionString
+      - key: DB_DRIVER
+        value: org.postgresql.Driver
+      - key: DB_USER
+        value: # Will be set by database connection
+      - key: DB_PASSWORD
+        value: # Will be set by database connection
+      - key: DB_DIALECT
+        value: org.hibernate.dialect.PostgreSQLDialect
+
+databases:
+  - name: devshowcase-db
+    plan: free
+    region: ohio
+    databaseName: devshowcase
+    user: devuser
